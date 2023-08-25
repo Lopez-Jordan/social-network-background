@@ -5,7 +5,7 @@ const {User, Thought} = require('../../models');
 // Get All Users    '/'          //  /api/users/
 router.get('/', async (req,res)=>{
     try{
-        const allUsers = await User.find();
+        const allUsers = await User.find({});
         res.status(200).json(allUsers);
     }
     catch (error){
