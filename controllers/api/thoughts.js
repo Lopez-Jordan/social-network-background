@@ -1,6 +1,6 @@
 // thought routes go here
 const router = require('express').Router();
-const { User, Thought } = require("../models");
+const { User, Thought } = require("../../models");
 
 // Get all thoughts '/'     //  /api/thoughts/
 router.get('/', async (req,res)=>{
@@ -55,7 +55,7 @@ router.post('/', async (req,res)=>{
 
 //  Put update a thought by _id  '/:id'   //      /api/thoughts/:id
 
-router.update('/:id', async (req,res)=>{
+router.put('/:id', async (req,res)=>{
     try{
         const foundThought = await Thought.findOneAndUpdate(
             {_id: req.params.id},

@@ -48,9 +48,9 @@ router.post('/', async (req,res)=>{
 
 // Put update user by _id   '/:id'       //  /api/users/:id
 
-router.put('/:id', aysnc, (req,res)=>{
+router.put('/:id', async (req,res)=>{
     try{
-        const updatedUser = User. findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
         { _id: req.params.id },
         { $set: req.body },
         { runValidators: true, new: true }
