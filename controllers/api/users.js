@@ -82,6 +82,7 @@ router.delete('/:id', async (req,res)=>{
         const deletedThoughts = Thought.deleteMany({
             _id: { $in: deletedUser.thoughts}
         })
+        res.json({message: "successful deletion!"})
     }
     catch (error){
         res.status(500).json(error);
