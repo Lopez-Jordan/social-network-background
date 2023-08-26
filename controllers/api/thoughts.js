@@ -17,7 +17,7 @@ router.get('/', async (req,res)=>{
 
 router.get('/:id', async (req,res)=>{
     try{
-        const thought = Thought.findOne({
+        const thought = await Thought.findOne({
             _id: req.params.id
         })      
         .select("-__v");
@@ -62,10 +62,7 @@ router.put('/:id', async (req,res)=>{
             { $set: req.body },
             { runValidators: true, New: true }
         );
-
-        if (!foundThought){
-            res.status(400).json({message: "no thought was found :/"});
-        }
+        console.log(foundThought);
         res.json(foundThought);
     }
     catch (error){
@@ -98,7 +95,7 @@ router.delete('/:id', async (req,res)=>{
 
 // Post create new reaction to `thoughtId`   '/:thoughtId/reactions'
 
-router.post('/:id', async (req,res)=>{
+router.post('/:id/reactions', async (req,res)=>{
     try{
         const updatedThought = await Thought.findOneAndUpdate(
             {_id: req.params.id},
